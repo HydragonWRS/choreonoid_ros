@@ -411,7 +411,7 @@ void BodyROSItem::updateRangeSensor(RangeSensor* sensor, ros::Publisher& publish
 
 void BodyROSItem::update3DRangeSensor(RangeSensor* sensor, ros::Publisher& publisher)
 {
-    pcl::PointCloud<pcl::PointXYZ> velodyne;
+    pcl::PointCloud<pcl::PointXYZ> lidar;
 
     const int numPitchSamples = sensor->numPitchSamples();
     const double pitchStep = sensor->pitchStep();
@@ -432,12 +432,12 @@ void BodyROSItem::update3DRangeSensor(RangeSensor* sensor, ros::Publisher& publi
                 point.x = distance *  cosPitchAngle * sin(-yawAngle);
                 point.y  = distance * sin(pitchAngle);
                 point.z  = -distance * cosPitchAngle * cos(yawAngle);
-                velodyne.points.push_back(point);
+                lidar.points.push_back(point);
             }
         }
     }
 
-    auto msg = velodyne.makeShared();
+    auto msg = lidar.makeShared();
     msg->header.frame_id = sensor->name();
     pcl_conversions::toPCL(ros::Time::now(), msg->header.stamp);
 
