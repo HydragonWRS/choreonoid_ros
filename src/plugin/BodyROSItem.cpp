@@ -439,7 +439,7 @@ void BodyROSItem::update3DRangeSensor(RangeSensor* sensor, ros::Publisher& publi
 
     auto msg = lidar.makeShared();
     msg->header.frame_id = sensor->name();
-    pcl_conversions::toPCL(ros::Time::now(), msg->header.stamp);
+    pcl_conversions::toPCL(ros::Time(io->currentTime()), msg->header.stamp);
 
     publisher.publish(msg);
 }
