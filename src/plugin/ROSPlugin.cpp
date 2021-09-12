@@ -1,6 +1,7 @@
 #include "WorldROSItem.h"
 #include "BodyROSItem.h"
 #include "DiffDriveControllerItem.h"
+#include "JointTrajectoryControllerItem.h"
 #include "deprecated/BodyPublisherItem.h"
 #include <cnoid/Plugin>
 #include <cnoid/MessageView>
@@ -30,6 +31,7 @@ public:
         WorldROSItem::initializeClass(this);
         BodyROSItem::initializeClass(this);
         DiffDriveControllerItem::initializeClass(this);
+        JointTrajectoryControllerItem::initializeClass(this);
         BodyPublisherItem::initializeClass(this);
         
         return true;

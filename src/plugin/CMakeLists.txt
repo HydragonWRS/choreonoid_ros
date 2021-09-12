@@ -7,6 +7,7 @@ choreonoid_add_plugin(${target}
   WorldROSItem.cpp
   BodyROSItem.cpp
   DiffDriveControllerItem.cpp
+  JointTrajectoryControllerItem.cpp
   deprecated/BodyPublisherItem.cpp
   ${mofiles}
   )
