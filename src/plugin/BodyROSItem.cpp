@@ -321,9 +321,8 @@ void BodyROSItem::updateRangeVisionSensor(RangeCamera* sensor, ros::Publisher& p
     range.height = sensor->resolutionY();
     range.is_bigendian = false;
     range.is_dense = true;
-    range.row_step = range.point_step * range.width;
     if (sensor->imageType() == cnoid::Camera::COLOR_IMAGE) {
-        range.fields.resize(6);
+        range.fields.resize(4);
         range.fields[3].name = "rgb";
         range.fields[3].offset = 12;
         range.fields[3].count = 1;
@@ -347,18 +346,19 @@ void BodyROSItem::updateRangeVisionSensor(RangeCamera* sensor, ros::Publisher& p
         range.fields.resize(3);
         range.point_step = 12;
     }
+    range.row_step = range.point_step * range.width;
     range.fields[0].name = "x";
     range.fields[0].offset = 0;
     range.fields[0].datatype = sensor_msgs::PointField::FLOAT32;
-    range.fields[0].count = 4;
+    range.fields[0].count = 1;
     range.fields[1].name = "y";
     range.fields[1].offset = 4;
     range.fields[1].datatype = sensor_msgs::PointField::FLOAT32;
-    range.fields[1].count = 4;
+    range.fields[1].count = 1;
     range.fields[2].name = "z";
     range.fields[2].offset = 8;
     range.fields[2].datatype = sensor_msgs::PointField::FLOAT32;
-    range.fields[2].count = 4;
+    range.fields[2].count = 1;
     const std::vector<Vector3f>& points = sensor->constPoints();
     const unsigned char* pixels = sensor->constImage().pixels();
     range.data.resize(points.size() * range.point_step);
