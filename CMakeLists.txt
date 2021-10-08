@@ -28,3 +28,7 @@ endif()
 include_directories(${catkin_INCLUDE_DIRS})
 
 add_subdirectory(src)
+message(${CHOREONOID_SHARE_DIR})
+install(FILES project/DoubleArmV7A.cnoid
+    DESTINATION share/choreonoid-1.8/WRS2020/project
+)
